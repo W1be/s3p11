@@ -16,7 +16,7 @@ struct Device {
 void readFromFile(vector<Device>& devices, const string& filename) {
     ifstream fin(filename);
     if (!fin) {
-        cout << "Ошибка: не удалось открыть файл " << filename << endl;
+        cout << "РћС€РёР±РєР°: РЅРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» " << filename << endl;
         return;
     }
 
@@ -26,17 +26,17 @@ void readFromFile(vector<Device>& devices, const string& filename) {
     }
 
     fin.close();
-    cout << "Данные успешно загружены (" << devices.size() << " записей)\n";
+    cout << "Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅС‹ (" << devices.size() << " Р·Р°РїРёСЃРµР№)\n";
 }
 
 
 void showDevices(const vector<Device>& devices) {
     if (devices.empty()) {
-        cout << "Список устройств пуст.\n";
+        cout << "РЎРїРёСЃРѕРє СѓСЃС‚СЂРѕР№СЃС‚РІ РїСѓСЃС‚.\n";
         return;
     }
 
-    cout << "\nСписок устройств:\n";
+    cout << "\nРЎРїРёСЃРѕРє СѓСЃС‚СЂРѕР№СЃС‚РІ:\n";
     cout << "--------------------------------------\n";
     for (size_t i = 0; i < devices.size(); ++i) {
         cout << i + 1 << ". "
@@ -50,27 +50,27 @@ void showDevices(const vector<Device>& devices) {
 
 void editDevice(vector<Device>& devices) {
     if (devices.empty()) {
-        cout << "Нет данных для редактирования.\n";
+        cout << "РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ.\n";
         return;
     }
 
     size_t index;
-    cout << "Введите номер записи для редактирования: ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°РїРёСЃРё РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ: ";
     cin >> index;
 
     if (index < 1 || index > devices.size()) {
-        cout << "Неверный номер!\n";
+        cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ!\n";
         return;
     }
 
-    cout << "Введите новые данные (имя тип год): ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ (РёРјСЏ С‚РёРї РіРѕРґ): ";
     cin >> devices[index - 1].name >> devices[index - 1].type >> devices[index - 1].year;
-    cout << "Запись обновлена.\n";
+    cout << "Р—Р°РїРёСЃСЊ РѕР±РЅРѕРІР»РµРЅР°.\n";
 }
 
 void calculate(const vector<Device>& devices) {
     if (devices.empty()) {
-        cout << "Нет данных для вычислений.\n";
+        cout << "РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёР№.\n";
         return;
     }
 
@@ -79,13 +79,13 @@ void calculate(const vector<Device>& devices) {
         sum += d.year;
 
     double average = static_cast<double>(sum) / devices.size();
-    cout << "\nСредний год выпуска устройств: " << average << endl;
+    cout << "\nРЎСЂРµРґРЅРёР№ РіРѕРґ РІС‹РїСѓСЃРєР° СѓСЃС‚СЂРѕР№СЃС‚РІ: " << average << endl;
 
     int limit;
-    cout << "Введите год, чтобы показать устройства старше его: ";
+    cout << "Р’РІРµРґРёС‚Рµ РіРѕРґ, С‡С‚РѕР±С‹ РїРѕРєР°Р·Р°С‚СЊ СѓСЃС‚СЂРѕР№СЃС‚РІР° СЃС‚Р°СЂС€Рµ РµРіРѕ: ";
     cin >> limit;
 
-    cout << "Устройства, выпущенные до " << limit << " года:\n";
+    cout << "РЈСЃС‚СЂРѕР№СЃС‚РІР°, РІС‹РїСѓС‰РµРЅРЅС‹Рµ РґРѕ " << limit << " РіРѕРґР°:\n";
     for (auto& d : devices)
         if (d.year < limit)
             cout << d.name << " (" << d.type << "), " << d.year << endl;
@@ -94,7 +94,7 @@ void calculate(const vector<Device>& devices) {
 void saveToFile(const vector<Device>& devices, const string& filename) {
     ofstream fout(filename);
     if (!fout) {
-        cout << "Ошибка записи в файл!\n";
+        cout << "РћС€РёР±РєР° Р·Р°РїРёСЃРё РІ С„Р°Р№Р»!\n";
         return;
     }
 
@@ -103,7 +103,7 @@ void saveToFile(const vector<Device>& devices, const string& filename) {
     }
 
     fout.close();
-    cout << "Данные сохранены в файл " << filename << endl;
+    cout << "Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р» " << filename << endl;
 }
 
 int main() {
@@ -113,68 +113,68 @@ int main() {
     string filename;
     int choice;
 
-    cout << "Введите имя входного файла: ";
+    cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°: ";
     cin >> filename;
 
-    // Пункт 1: чтение данных
+    // РџСѓРЅРєС‚ 1: С‡С‚РµРЅРёРµ РґР°РЅРЅС‹С…
     readFromFile(devices, filename);
 
-    // Меню действий
+    // РњРµРЅСЋ РґРµР№СЃС‚РІРёР№
     do {
-        cout << "\n=== МЕНЮ ===\n";
-        cout << "1. Просмотр данных\n";
-        cout << "2. Редактирование записи\n";
-        cout << "3. Добавление записи\n";
-        cout << "4. Удаление записи\n";
-        cout << "5. Вычисления\n";
-        cout << "6. Сохранение данных в новый файл\n";
-        cout << "0. Выход\n";
-        cout << "Ваш выбор: ";
+        cout << "\n=== РњР•РќР® ===\n";
+        cout << "1. РџСЂРѕСЃРјРѕС‚СЂ РґР°РЅРЅС‹С…\n";
+        cout << "2. Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РїРёСЃРё\n";
+        cout << "3. Р”РѕР±Р°РІР»РµРЅРёРµ Р·Р°РїРёСЃРё\n";
+        cout << "4. РЈРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё\n";
+        cout << "5. Р’С‹С‡РёСЃР»РµРЅРёСЏ\n";
+        cout << "6. РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С… РІ РЅРѕРІС‹Р№ С„Р°Р№Р»\n";
+        cout << "0. Р’С‹С…РѕРґ\n";
+        cout << "Р’Р°С€ РІС‹Р±РѕСЂ: ";
         cin >> choice;
 
         switch (choice) {
         case 1:
-            showDevices(devices); // пункт 2
+            showDevices(devices); // РїСѓРЅРєС‚ 2
             break;
         case 2:
-            editDevice(devices); // пункт 3
+            editDevice(devices); // РїСѓРЅРєС‚ 3
             break;
         case 3: {
             Device d;
-            cout << "Введите данные нового устройства (имя тип год): ";
+            cout << "Р’РІРµРґРёС‚Рµ РґР°РЅРЅС‹Рµ РЅРѕРІРѕРіРѕ СѓСЃС‚СЂРѕР№СЃС‚РІР° (РёРјСЏ С‚РёРї РіРѕРґ): ";
             cin >> d.name >> d.type >> d.year;
             devices.push_back(d);
-            cout << "Устройство добавлено.\n";
+            cout << "РЈСЃС‚СЂРѕР№СЃС‚РІРѕ РґРѕР±Р°РІР»РµРЅРѕ.\n";
             break;
         }
         case 4: {
-            if (devices.empty()) { cout << "Нет данных для удаления.\n"; break; }
+            if (devices.empty()) { cout << "РќРµС‚ РґР°РЅРЅС‹С… РґР»СЏ СѓРґР°Р»РµРЅРёСЏ.\n"; break; }
             size_t index;
-            cout << "Введите номер записи для удаления: ";
+            cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°РїРёСЃРё РґР»СЏ СѓРґР°Р»РµРЅРёСЏ: ";
             cin >> index;
             if (index < 1 || index > devices.size()) {
-                cout << "Неверный номер!\n";
+                cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ!\n";
                 break;
             }
             devices.erase(devices.begin() + index - 1);
-            cout << "Запись удалена.\n";
+            cout << "Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°.\n";
             break;
         }
         case 5:
-            calculate(devices); // пункт 4
+            calculate(devices); // РїСѓРЅРєС‚ 4
             break;
         case 6: {
             string outFile;
-            cout << "Введите имя выходного файла: ";
+            cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°: ";
             cin >> outFile;
-            saveToFile(devices, outFile); // пункт 5
+            saveToFile(devices, outFile); // РїСѓРЅРєС‚ 5
             break;
         }
         case 0:
-            cout << "Выход из программы.\n";
+            cout << "Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹.\n";
             break;
         default:
-            cout << "Неверный выбор, попробуйте снова.\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n";
         }
     } while (choice != 0);
 
